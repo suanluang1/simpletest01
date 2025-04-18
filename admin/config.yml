@@ -1,0 +1,113 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME # Replace with your actual GitHub username and repository name
+  branch: main # Replace with your default branch name (main or master)
+
+# Media files will be stored in the repo under this folder
+media_folder: "images/uploads"
+# The public folder path where the files can be accessed
+public_folder: "/images/uploads"
+
+collections:
+  - name: "home"
+    label: "Home Page"
+    files:
+      - label: "Main Content"
+        name: "main"
+        file: "index.html"
+        fields:
+          - {label: "Site Title", name: "site_title", widget: "string", default: "Suanluang Rama IX"}
+          - {label: "Site Subtitle", name: "site_subtitle", widget: "string", default: "Botanical Garden"}
+          - {label: "Main Description", name: "main_description", widget: "string", default: "Thailand's largest botanical garden, a green oasis in the heart of Bangkok"}
+          - {label: "Explore Button Text", name: "explore_button_text", widget: "string", default: "Explore the Garden"}
+          - {label: "About Section Title", name: "about_section_title", widget: "string", default: "A Royal Legacy"}
+          - {label: "About Content", name: "about_content", widget: "markdown", default: "Suanluang Rama IX, also referred to as King Rama IX Park, is Bangkok's largest public park spanning 500 rai (80 hectares) in the Prawet District. Established in 1987 to commemorate King Bhumibol Adulyadej's (Rama IX) 60th birthday, this botanical paradise was officially opened by the King himself on December 1, 1987.\n\nMore than just a park, Suanluang Rama IX is a living tribute to the late King's dedication to environmental conservation and botanical research. The park features extensive botanical gardens, international-themed gardens, a serene lake, and pavilions showcasing the King's environmental initiatives.\n\nToday, the Suan Luang Rama IX Foundation manages this green sanctuary, ensuring it remains a place of education, recreation, and natural beauty for generations to come."}
+          
+          - label: "Timeline Items"
+            name: "timeline_items"
+            widget: "list"
+            fields:
+              - {label: "Year", name: "year", widget: "string"}
+              - {label: "Description", name: "description", widget: "string"}
+            default:
+              - {year: "1987", description: "Park established to celebrate King Rama IX's 60th birthday"}
+              - {year: "December 1, 1987", description: "Official opening ceremony by King Bhumibol Adulyadej"}
+              - {year: "Since 1987", description: "Annual \"Beautiful Flora in Suan Luang Rama IX Park\" festival held every December"}
+              - {year: "2023", description: "Suan Luang Rama IX MRT station opened, enhancing accessibility"}
+          
+          - {label: "Gardens Section Title", name: "gardens_section_title", widget: "string", default: "Explore Our Gardens"}
+          - {label: "Gardens Introduction", name: "gardens_intro", widget: "text", default: "Suanluang Rama IX features a diverse collection of gardens, each with its own unique theme and plant collections, offering visitors a journey through botanical wonders from around the world."}
+          
+          - label: "Garden Items"
+            name: "garden_items"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Link Text", name: "link_text", widget: "string", default: "Learn more"}
+            default:
+              - {name: "Chinese Garden", image: "https://www.thailandmagazine.com/wp-content/uploads/2018/02/King-Rama-IX-Park-China-C-Karl-Gercens_1020x680.jpg", description: "Features a wooden pavilion hidden in a walled garden, complete with lily ponds and tiny ornamental bridges reflecting traditional Chinese garden design.", link_text: "Learn more"}
+              - {name: "Japanese Garden", image: "https://yourthaiguide.com/wp-content/uploads/2019/07/Your-Thai-Guide-King-Rama-IX-Park-1.jpg", description: "A peaceful garden featuring traditional Japanese elements including stone lanterns, carefully pruned trees, and tranquil water features designed for contemplation.", link_text: "Learn more"}
+              - {name: "Thai Botanical Garden", image: "https://www.debotan.com/wp-content/uploads/2019/04/009-20190305-091530.jpg", description: "Home to an extensive collection of native Thai trees, tropical flowers, orchids, and rare plant species housed in special greenhouses.", link_text: "Learn more"}
+  
+  - name: "visitor_info"
+    label: "Visitor Information"
+    files:
+      - label: "Visitor Details"
+        name: "details"
+        file: "visitor-info.html"
+        create: true
+        fields:
+          - {label: "Title", name: "title", widget: "string", default: "Visitor Information"}
+          - {label: "Opening Hours", name: "opening_hours", widget: "string", default: "Open daily from 5:00 AM to 7:00 PM"}
+          - {label: "Admission Fees", name: "admission_fees", widget: "markdown", default: "Adults: 10 Baht\nVehicles: 50 Baht"}
+          - {label: "Getting Here", name: "getting_here", widget: "markdown", default: "Suan Luang Rama IX MRT Station\nTaxi or private vehicle"}
+          - {label: "Visitor Center", name: "visitor_center", widget: "string", default: "Maps, guided tours and information available at the entrance"}
+          
+          - label: "Available Activities"
+            name: "activities"
+            widget: "list"
+            field: {label: "Activity", name: "activity", widget: "string"}
+            default:
+              - "Paddleboat rentals on the lake (swan and duck boats)"
+              - "Small train tours around popular sites"
+              - "Picnic areas with rug rentals available"
+              - "Outdoor gym and exercise equipment"
+              - "Photography tours through the gardens"
+              - "Early morning group runs (participation fee may apply)"
+          
+          - label: "Facilities & Services"
+            name: "facilities"
+            widget: "list"
+            field: {label: "Facility", name: "facility", widget: "string"}
+            default:
+              - "Cafés and refreshment stalls throughout the park"
+              - "Food vendors near entrances offering Thai snacks"
+              - "Public restrooms (small fee may apply)"
+              - "Plant nursery with monthly sales of garden-cultivated plants"
+              - "Botanical library and learning center"
+              - "First aid station and security services"
+
+  - name: "navigation"
+    label: "Navigation"
+    files:
+      - label: "Menu Items"
+        name: "menu"
+        file: "nav.json"
+        create: true
+        fields:
+          - label: "Menu Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Label", name: "label", widget: "string"}
+              - {label: "URL", name: "url", widget: "string"}
+            default:
+              - {label: "Home", url: "/"}
+              - {label: "About", url: "#about"}
+              - {label: "Gardens", url: "#gardens"}
+              - {label: "Visitor Info", url: "#visitor-info"}
+              - {label: "Events", url: "#events"}
+              - {label: "Gallery", url: "#gallery"}
+              - {label: "Contact", url: "#contact"}
