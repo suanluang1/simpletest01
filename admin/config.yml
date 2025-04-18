@@ -1,7 +1,9 @@
 backend:
   name: github
   repo: suanluang1/simpletest01 # Replace with your actual GitHub username and repository name
-  branch: main # Replace with your default branch name (main or master)
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Media files will be stored in the repo under this folder
 media_folder: "images/uploads"
