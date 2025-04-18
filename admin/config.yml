@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME # Replace with your actual GitHub username and repository name
+  repo: suanluang1/simpletest01 # Replace with your actual GitHub username and repository name
   branch: main # Replace with your default branch name (main or master)
 
 # Media files will be stored in the repo under this folder
