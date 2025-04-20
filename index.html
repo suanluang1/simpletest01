@@ -26,7 +26,7 @@
         async function fetchPageContent() {
             try {
                 // Fetch the page with slug "home"
-                const response = await fetch(`${DIRECTUS_URL}/items/pages?filter[slug][_eq]=home&fields=html_content`);
+                const response = await fetch(`${DIRECTUS_URL}items/pages?filter[slug][_eq]=home&fields=html_content`);
                 
                 if (!response.ok) {
                     throw new Error('Failed to fetch content');
