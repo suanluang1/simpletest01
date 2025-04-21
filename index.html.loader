@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suanluang Rama IX</title>
+    <style>
+        /* Add some basic loading styles */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+        }
+        /* Include any essential styles that might be needed before content loads */
+    </style>
+</head>
+<body>
+    <!-- This div will be replaced with your content from Directus -->
+    <div id="content" class="loading">Loading content...</div>
+
+    <script>
+        // Your Directus URL - replace with your actual URL
+        const DIRECTUS_URL = 'https://directus-production-484b.up.railway.app';
+        
+        // Function to fetch page content
+        async function fetchPageContent() {
+            try {
+                // Fetch the page with slug "home"
+                const response = await fetch(`${DIRECTUS_URL}/items/Pages?filter[slug][_eq]=home&fields=html_content`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch content');
+                }
+                
+                const data = await response.json();
+                
+                // Check if we got data back
+                if (!data.data || data.data.length === 0) {
+                    throw new Error('No content found');
+                }
+                
+                const pageData = data.data[0];
+                
+                // Simply insert the entire HTML content
+                document.getElementById('content').outerHTML = pageData.html_content;
+                
+                // Execute any scripts that might be in the content
+                // This is necessary because innerHTML doesn't execute scripts
+                const scripts = document.querySelectorAll('script');
+                scripts.forEach(script => {
+                    if (script.src) {
+                        const newScript = document.createElement('script');
+                        newScript.src = script.src;
+                        document.body.appendChild(newScript);
+                    } else if (script.textContent) {
+                        eval(script.textContent);
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error fetching content:', error);
+                document.getElementById('content').innerHTML = `
+                    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+                        <h2>Error Loading Content</h2>
+                        <p>Unable to load the page content. Please try again later.</p>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Load the content when the page loads
+        window.addEventListener('DOMContentLoaded', fetchPageContent);
+    </script>
+</body>
+</html>
